@@ -53,11 +53,33 @@ This repository contains a collection of Python scripts for image processing in 
       python gaussian.py
       ```
 
-## Results
-Each script generates plots that show:
-- The input image.
+## Observations
+### 1. 1D
+- Peaks in the magnitude spectrum indicate dominant frequencies in
+each row/column.
+- White spaces represent high magnitude while black spaces represent
+low magnitude.
 - Frequency domain transformations (e.g., FFT, magnitude spectrum).
 - Filtered or reconstructed images.
+
+### 2. 2D
+- The x-axis represents the horizontal frequencies and the y-axis represents the
+vertical frequencies.
+- The 2D DFT result is typically shifted so that the low frequencies are
+centred in the image. This makes it easier to visualize the low-frequency
+components, which are usually more important for image reconstruction.
+
+## Conclusion
+- Multiplying the 2D-DFT image by a 2D Gaussian symmetric window in the
+frequency domain effectively applies a Gaussian low-pass filter.
+This process attenuates higher frequencies while preserving lower
+frequencies, resulting in a smoother version of the image. This is because
+the Gaussian filter acts as a smoothing function, reducing the contribution
+of high-frequency components.
+- After applying the inverse DFT to the filtered image, you will obtain a
+version of the original image where high-frequency details are suppressed,
+leading to a smoother appearance. The Gaussian filter
+effectively blurs the image by attenuating high-frequency components.
 
 ## Dependencies
 - **NumPy**: For numerical operations and FFT.
